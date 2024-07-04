@@ -43,12 +43,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #e0f7fa;
     padding: 15px;
     margin-bottom: 10px;
-    border-radius: 10px;
     border: 1px solid #000;
+    border-radius: 10px;
     background-color: #aaf9f9;
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.todo-item.fade-out {
+    opacity: 0;
+    transform: scale(0.9);
 }
 
 .todo-button {
