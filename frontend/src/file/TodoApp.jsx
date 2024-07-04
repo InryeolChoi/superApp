@@ -5,7 +5,6 @@ import './TodoApp.css';
     
 const TodoApp = () => {
     const [todos, setTodos] = useState([]);
-    const [deletingTodoId, setDeletingTodoId] = useState(null);
     const navigate = useNavigate();
     
     useEffect(() => {
@@ -16,12 +15,10 @@ const TodoApp = () => {
     }, []);
 
     const handleComplete = (id) => {
-        setDeletingTodoId(id);
         setTimeout(() => {
             axios.put(`/todo/${id}/`, { complete: true })
                 .then(response => {
                     setTodos(todos.filter(todo => todo.id !== id));
-                    setDeletingTodoId(null);
                     })
                 .catch(error => {
                     console.error('complete 과정에서 에러가 났습니다!', error);
@@ -34,16 +31,13 @@ const TodoApp = () => {
     };
 
     const handleDelete = (id) => {
-        setDeletingTodoId(id);
         setTimeout(() => {
-            axios.delete(`/todo/${id}`)
+            axios.delete(`/todo/${id}/`)
                 .then(response => {
                     setTodos(todos.filter(todo => todo.id !== id));
-                    setDeletingTodoId(null);
                 })
                 .catch(error => {
                     console.error('delete 과정에서 에러가 났습니다!', error);
-                    setDeletingTodoId(null);
                 });
         }, 500);
     }
