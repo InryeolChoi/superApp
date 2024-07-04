@@ -4,8 +4,8 @@
 * 프론트엔드 : React
 
 # 기능
-* todo-list 작성, 수정, 삭제
-* 
+* todolist 작성, 수정, 삭제
+* 완료된 todolist 확인
 
 # 실행방법
 * (추후 추가)
