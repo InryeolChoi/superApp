@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from './axiosConfig';
 import './AddTodolist.css';
 
@@ -7,6 +8,11 @@ const AddTodolist = () => {
     const [description, setDescription] = useState('');
     const [important, setImportant] = useState(false);
     const [message, setMessage] = useState('');
+    const navigate = useNavigate();
+
+    const handleback = () => {
+        navigate('/list')
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -27,6 +33,9 @@ const AddTodolist = () => {
 
     return (
         <div>
+            <button className='back' onClick={
+                () => handleback()
+            }>뒤로가기</button>
             <h1>Add Todo</h1>
             {message && <p>{message}</p>}
             <form onSubmit={handleSubmit}>
@@ -34,7 +43,6 @@ const AddTodolist = () => {
                     <label htmlFor="title">Title:</label>
                     <input
                         type="text"
-                        id="title"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
                         placeholder="할일 제목"
@@ -58,7 +66,7 @@ const AddTodolist = () => {
                         onChange={(e) => setImportant(e.target.checked)}
                     />
                 </div>
-                <button type="submit">추가</button>
+                <button className='submit' type="submit">추가</button>
             </form>
         </div>
     );

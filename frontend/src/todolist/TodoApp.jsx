@@ -29,7 +29,7 @@ const TodoApp = () => {
     }
 
     const handleEdit = (id) => {
-        navigate(`/edit/${id}`);
+        navigate(`/list/edit/${id}`);
     };
 
     const handleDelete = (id) => {

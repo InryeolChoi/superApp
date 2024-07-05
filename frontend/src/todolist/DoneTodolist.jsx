@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
 import axios from './axiosConfig';
+import './DoneTodolist.css'
 
 const DoneTodoList = () => {
     const [donetodos, setDonetodos] = useState([])
+    const navigate = useNavigate();
+
+    const handleback = () => {
+        navigate('/list')
+    }
 
     useEffect(() => {
         axios.get('/list/done/')
@@ -20,6 +27,9 @@ const DoneTodoList = () => {
 
     return (
         <div className='done-todo-list'>
+            <button className='back' onClick={
+                () => handleback()
+            }>뒤로가기</button>
             <h2>완료된 할일 목록</h2>
             <button className="delete-all-button" onClick={handleDeleteAll}>모두 삭제</button>
             <ul className="done-todo-list">

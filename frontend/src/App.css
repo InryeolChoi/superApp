@@ -1,0 +1,16 @@
+.container {
+    padding: 20px;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.home-link {
+    display: flex;
+    margin-bottom : 10pt;
+}
+

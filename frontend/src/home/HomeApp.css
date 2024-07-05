@@ -1,0 +1,40 @@
+#homebox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+}
+
+#title {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#menu-list {
+    display: flex;
+    margin : 10pt;
+    padding : 10px 10px
+}
+
+#menu-item {
+    margin-bottom: 10px;
+}
+
+#menu-button {
+    background-color: #6200ea;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-left: 10px;
+}
+
+.menu-button:hover {
+    background-color: #3700b3;
+}
