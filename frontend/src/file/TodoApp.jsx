@@ -5,18 +5,20 @@ import './TodoApp.css';
     
 const TodoApp = () => {
     const [todos, setTodos] = useState([]);
+    const [deletingTodoId, setDeletingTodoId] = useState(null);
     const navigate = useNavigate();
     
     useEffect(() => {
-        axios.get('/todo/')
+        axios.get('/list/todo/')
             .then(response => {setTodos(response.data);})
             .catch(error => {console.error('fetching 과정에서 에러가 났습니다!', error);
             });
     }, []);
 
     const handleComplete = (id) => {
+        setDeletingTodoId(id);
         setTimeout(() => {
-            axios.put(`/todo/${id}/`, { complete: true })
+            axios.put(`/list/todo/${id}/`, { complete: true })
                 .then(response => {
                     setTodos(todos.filter(todo => todo.id !== id));
                     })
@@ -31,8 +33,9 @@ const TodoApp = () => {
     };
 
     const handleDelete = (id) => {
+        setDeletingTodoId(id);
         setTimeout(() => {
-            axios.delete(`/todo/${id}/`)
+            axios.delete(`/list/todo/${id}/`)
                 .then(response => {
                     setTodos(todos.filter(todo => todo.id !== id));
                 })
@@ -47,7 +50,10 @@ const TodoApp = () => {
             <h2>현재 todolist</h2>
             <ul className="todo-list">
                 {todos.map(todo => (
-                    <li key={todo.id} className="todo-item">
+                    <li key={todo.id} 
+                        className={`todo-item 
+                            ${deletingTodoId === todo ? 'fade-out' : ''}
+                            ${todo.important ? 'important' : ''}`}>
                         {todo.title}
                         <div>
                             <button className="todo-button" 

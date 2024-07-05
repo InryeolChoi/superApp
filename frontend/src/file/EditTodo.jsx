@@ -8,10 +8,11 @@ const EditTodo = () => {
     const [description, setDescription] = useState('');
     const [important, setImportant] = useState(false);
     const [message, setMessage] = useState('');
+    const [error, setError] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`/todo/${id}/`)
+        axios.get(`/list/todo/${id}/`)
             .then(response => {
                 const todo = response.data;
                 setTitle(todo.title);
@@ -25,6 +26,11 @@ const EditTodo = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+
+        if (title.length > 100|| description.length > 100){
+            setError("title / description은 100자가 넘으면 안됩니다.")
+            return ;
+        }
     
         const updatedTodo = {
             title,
@@ -32,7 +38,7 @@ const EditTodo = () => {
             important
         };
     
-        axios.put(`/todo/${id}/`, updatedTodo)
+        axios.put(`/list/todo/${id}/`, updatedTodo)
             .then(response => {
                 setMessage('할일이 성공적으로 수정되었습니다!');
                 navigate('/');  // 수정 후 메인 페이지로 이동
@@ -47,6 +53,7 @@ const EditTodo = () => {
         <div>
             <h1>수정하기</h1>
             {message && <p>{message}</p>}
+            {error && <p className="error">{error}</p>}
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="title">Title:</label>
@@ -54,7 +61,12 @@ const EditTodo = () => {
                         type="text"
                         id="title"
                         value={title}
-                        onChange={(e) => setTitle(e.target.value)}
+                        onChange={(e) => {
+                            setTitle(e.target.value);
+                            if (e.target.value.length <= 100) {
+                                setError('');
+                            }
+                        }}
                         placeholder="할일 제목"
                     />
                 </div>
@@ -63,7 +75,12 @@ const EditTodo = () => {
                     <textarea
                         id="description"
                         value={description}
-                        onChange={(e) => setDescription(e.target.value)}
+                        onChange={(e) => {
+                            setDescription(e.target.value);
+                            if (e.target.value.length <= 100) {
+                                setError('');
+                            }
+                        }}
                         placeholder="할일 설명"
                     ></textarea>
                 </div>

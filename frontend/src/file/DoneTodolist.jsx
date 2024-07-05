@@ -5,13 +5,13 @@ const DoneTodoList = () => {
     const [donetodos, setDonetodos] = useState([])
 
     useEffect(() => {
-        axios.get('/done/')
+        axios.get('/list/done/')
             .then(response => {setDonetodos(response.data)})
             .catch(error => {console.error('fetching 과정에서 에러가 났습니다!', error)})
     }, []);
 
     const handleDeleteAll = () => {
-        axios.delete('/done/')
+        axios.delete('/list/done/')
             .then(response => {setDonetodos([]);})
             .catch(error => {
                 console.error('delete 완료된 항목 과정에서 에러가 났습니다!', error);

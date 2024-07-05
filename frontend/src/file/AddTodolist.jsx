@@ -12,7 +12,7 @@ const AddTodolist = () => {
         event.preventDefault();
         const newTodo = {title, description, important};
 
-        axios.post('/todo/', newTodo)
+        axios.post('/list/todo/', newTodo)
             .then(response => {
                 setMessage('새 할일이 성공적으로 추가되었습니다!');
                 setTitle('');
