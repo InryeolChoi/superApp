@@ -38,7 +38,7 @@ const PostList = () => {
                         <li key={post.id} id="post-item">
                             <Link to={`/board/posts/${post.id}`} className="post-title">{post.title}</Link>
                             <p className="post-content">{post.content}</p>
-                            <p className="post-author">By {post.author}</p>
+                            <p className="post-author">By {post.author_username}</p>
                         </li>
                     ))}
                 </ul>

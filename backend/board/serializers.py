@@ -2,9 +2,20 @@ from rest_framework import serializers
 from .models import Post, User
 
 class PostSerializer(serializers.ModelSerializer):
+    author_username = serializers.CharField(source='author.username', read_only=True)
     class Meta:
         model = Post
-        fields = ('id', 'title', 'content', 'author')
+        fields = ('id', 'title', 'content', 'author_username')
+
+class PostListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = ['id', 'title', 'content', 'author']
+
+class PostCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Post
+        fields = ['title', 'content']
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:

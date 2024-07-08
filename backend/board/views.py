@@ -1,32 +1,63 @@
-from .models import Post
-from .serializers import PostSerializer, UserSerializer
-from django.contrib.auth import authenticate
-from rest_framework import generics, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, AllowAny
 from rest_framework_simplejwt.tokens import RefreshToken
-from rest_framework.permissions import IsAuthenticatedOrReadOnly
-from rest_framework.exceptions import NotAuthenticated
+from django.contrib.auth import authenticate, login, logout
+from .models import Post
+from .serializers import PostSerializer, PostCreateSerializer, UserSerializer
 
-class PostListCreateAPIView(generics.ListCreateAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
+class PostListCreateAPIView(APIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
 
-    def perform_create(self, serializer):
-        if not self.request.user or not self.request.user.is_authenticated:
-            raise NotAuthenticated("로그인이 필요합니다.")
-        serializer.save(author=self.request.user)
+    def get(self, request):
+        posts = Post.objects.all()
+        serializer = PostSerializer(posts, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
-class PostDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
+    def post(self, request):
+        serializer = PostCreateSerializer(data=request.data)
+        if serializer.is_valid():
+            print(request.user)
+            serializer.save(author=request.user)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class PostDetailAPIView(APIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
+    def get_object(self, pk):
+        try:
+            return Post.objects.get(pk=pk)
+        except Post.DoesNotExist:
+            return None
 
-    def perform_update(self, serializer):
-        serializer.save(author=self.request.user)
+    def get(self, request, pk):
+        post = self.get_object(pk)
+        if post is None:
+            return Response({'detail': "Not found."}, status=status.HTTP_404_NOT_FOUND)
+        serializer = PostSerializer(post)
+        return Response(serializer.data)
+
+    def put(self, request, pk):
+        post = self.get_object(pk)
+        if post is None:
+            return Response({'detail': "Not found."}, status=status.HTTP_404_NOT_FOUND)
+        serializer = PostSerializer(post, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save(author=request.user)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        post = self.get_object(pk)
+        if post is None:
+            return Response({'detail': "Not found."}, status=status.HTTP_404_NOT_FOUND)
+        post.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 class LoginView(APIView):
+    permission_classes = [AllowAny]
+
     def post(self, request):
         username = request.data.get('username')
         password = request.data.get('password')
@@ -37,7 +68,7 @@ class LoginView(APIView):
             return Response({
                 'refresh': str(refresh),
                 'access': str(refresh.access_token)
-                }, status=status.HTTP_200_OK)
+            }, status=status.HTTP_200_OK)
         return Response({'detail': "로그인 실패"}, status=status.HTTP_400_BAD_REQUEST)
     
 class LogoutView(APIView):
@@ -51,6 +82,8 @@ class LogoutView(APIView):
             return Response({'detail': "로그아웃 실패"}, status=status.HTTP_400_BAD_REQUEST)
 
 class RegisterView(APIView):
+    permission_classes = [AllowAny]
+
     def post(self, request):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
