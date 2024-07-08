@@ -1,6 +1,7 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import axios from './axiosConfig';
+import axios from '../axiosConfig';
+import './EditTodo.css'
 
 const EditTodo = () => {
     const { id } = useParams();
@@ -41,7 +42,7 @@ const EditTodo = () => {
         axios.put(`/list/todo/${id}/`, updatedTodo)
             .then(response => {
                 setMessage('할일이 성공적으로 수정되었습니다!');
-                navigate('/');  // 수정 후 메인 페이지로 이동
+                navigate('/list');  // 수정 후 메인 페이지로 이동
             })
             .catch(error => {
                 console.error('할일 수정 과정에서 에러가 났습니다!', error);
@@ -58,9 +59,7 @@ const EditTodo = () => {
                 <div className="form-group">
                     <label htmlFor="title">Title:</label>
                     <input
-                        type="text"
-                        id="title"
-                        value={title}
+                        type="text" id="inputid" value={title}
                         onChange={(e) => {
                             setTitle(e.target.value);
                             if (e.target.value.length <= 100) {
@@ -73,8 +72,7 @@ const EditTodo = () => {
                 <div className="form-group">
                     <label htmlFor="description">Description:</label>
                     <textarea
-                        id="description"
-                        value={description}
+                        id="description" value={description}
                         onChange={(e) => {
                             setDescription(e.target.value);
                             if (e.target.value.length <= 100) {

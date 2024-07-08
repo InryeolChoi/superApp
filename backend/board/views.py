@@ -1,18 +1,30 @@
-from rest_framework import generics, permissions
-from rest_framework.response import Response
-from rest_framework.views import APIView
-from rest_framework import status
-from django.contrib.auth import authenticate, login, logout
 from .models import Post
 from .serializers import PostSerializer, UserSerializer
+from django.contrib.auth import authenticate
+from rest_framework import generics, status
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.exceptions import NotAuthenticated
 
 class PostListCreateAPIView(generics.ListCreateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def perform_create(self, serializer):
+        if not self.request.user or not self.request.user.is_authenticated:
+            raise NotAuthenticated("로그인이 필요합니다.")
+        serializer.save(author=self.request.user)
 
 class PostDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
+
+    def perform_update(self, serializer):
+        serializer.save(author=self.request.user)
 
 class LoginView(APIView):
     def post(self, request):
@@ -21,18 +33,26 @@ class LoginView(APIView):
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
-            login(request, user)
-            return Response({'detail' : "로그인 성공"}, status=status.HTTP_200_OK)
-        return Response({'detail' : "로그인 실패"}, status=status.HTTP_400_BAD_REQUEST)
+            refresh = RefreshToken.for_user(user)
+            return Response({
+                'refresh': str(refresh),
+                'access': str(refresh.access_token)
+                }, status=status.HTTP_200_OK)
+        return Response({'detail': "로그인 실패"}, status=status.HTTP_400_BAD_REQUEST)
     
 class LogoutView(APIView):
     def post(self, request):
-        logout(request)
-        return Response({'detail' : "로그인 성공"}, status=status.HTTP_200_OK)
-    
+        try:
+            refresh_token = request.data.get('refresh_token')
+            token = RefreshToken(refresh_token)
+            token.blacklist()
+            return Response({'detail': "로그아웃 성공"}, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({'detail': "로그아웃 실패"}, status=status.HTTP_400_BAD_REQUEST)
+
 class RegisterView(APIView):
     def post(self, request):
-        serializer = UserSerializer(data = request.data)
+        serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

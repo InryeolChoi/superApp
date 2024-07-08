@@ -1,0 +1,137 @@
+.post-detail-container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+}
+
+.post-detail-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.post-detail-content {
+    font-size: 1rem;
+    color: #555;
+    margin: 10px 0;
+}
+
+.post-detail-author {
+    font-size: 0.875rem;
+    color: #999;
+    margin-bottom: 20px;
+}
+
+.delete-button, .edit-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-button {
+    background-color: #dc3545;
+    margin-right: 10px;
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
+
+.delete-button:active {
+    background-color: #bd2130;
+}
+
+.edit-button {
+    background-color: #007BFF;
+}
+
+.edit-button:hover {
+    background-color: #0056b3;
+}
+
+.edit-button:active {
+    background-color: #004494;
+}
+
+.edit-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+}
+
+.edit-popup-content h2 {
+    margin-top: 0;
+}
+
+.edit-popup-content label {
+    display: block;
+    margin-top: 10px;
+}
+
+.edit-popup-content input,
+.edit-popup-content textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.edit-popup-content button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-popup-content button:first-of-type {
+    background-color: #28a745;
+    margin-right: 10px;
+}
+
+.edit-popup-content button:first-of-type:hover {
+    background-color: #218838;
+}
+
+.edit-popup-content button:first-of-type:active {
+    background-color: #1e7e34;
+}
+
+.edit-popup-content button:last-of-type {
+    background-color: #6c757d;
+}
+
+.edit-popup-content button:last-of-type:hover {
+    background-color: #5a6268;
+}
+
+.edit-popup-content button:last-of-type:active {
+    background-color: #545b62;
+}

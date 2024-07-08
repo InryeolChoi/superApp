@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from "react";
-import axios from './axiosConfig';
+import axios from '../axiosConfig';
 import './TodoApp.css';
     
 const TodoApp = () => {

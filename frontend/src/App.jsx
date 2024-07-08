@@ -4,8 +4,9 @@ import TodoApp from './todolist/TodoApp';
 import DoneTodolist from './todolist/DoneTodolist';
 import AddTodolist from './todolist/AddTodolist';
 import EditTodo from './todolist/EditTodo';
-import HomeApp from './home/HomeApp'
-import './App.css'
+import HomeApp from './home/HomeApp';
+import Board from './board/Board';
+import './App.css';
 
 const App = () => {
     const location = useLocation();
@@ -31,6 +32,7 @@ const App = () => {
                         <Route path="/list/AddTodolist" element={<AddTodolist />} />
                         <Route path="/list/DoneTodolist" element={<DoneTodolist />} />
                         <Route path="/list/edit/:id" element={<EditTodo />} />
+                        <Route path="/board/*" element={<Board />} />
                     </Routes>
                 </div>
             </div>
