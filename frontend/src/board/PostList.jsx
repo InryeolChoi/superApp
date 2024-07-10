@@ -2,15 +2,30 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import axios from "../axiosConfig";
 import Logout from './Logout';
+import Cookies from 'js-cookie';
 import './PostList.css';
 
 const PostList = () => {
     const [posts, setPosts] = useState([]);
-    const isLoggedIn = !!localStorage.getItem('access_token');
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const checkLoginStatus = () => {
+            const accessToken = Cookies.get('access') || localStorage.getItem('access_token');
+            if (accessToken) {
+                setIsLoggedIn(true);
+                axios.defaults.headers['Authorization'] = 'Bearer ' + accessToken;
+            }
+        };
+
+        checkLoginStatus();
+    }, []);
 
     useEffect(() => {
         axios.get('/board/posts/')
-            .then(response => {setPosts(response.data);})
+            .then(response => {
+                setPosts(response.data);
+            })
             .catch(error => {
                 console.error('There was an error fetching the posts!', error);
             });
@@ -21,9 +36,11 @@ const PostList = () => {
             <div id='boardhome'>
                 <Link to='/' className='parts'>Home</Link>
                 <Link to="/board" className='parts'>Board</Link>
-                {isLoggedIn && <Link to="/board/new" className='parts'>새 포스트</Link>}
                 {isLoggedIn ? (
-                    <Logout className='parts' />
+                    <>
+                        <Link to="/board/new" className='parts'>새 포스트</Link>
+                        <Logout className='parts' setIsLoggedIn={setIsLoggedIn}/>                
+                    </>
                 ) : (
                     <>
                         <Link to="/board/login" className='parts'>로그인</Link>

@@ -23,6 +23,10 @@ const Login = () => {
             });
     };
 
+    const handle42Login = () => {
+        window.location.href = 'http://localhost:8000/board/oauth/login/';
+    }
+
     return (
         <div className="login-container">
             <h2 className="login-title">로그인</h2>
@@ -47,6 +51,7 @@ const Login = () => {
                 </div>
                 <button type="submit">로그인</button>
             </form>
+            <button className='oauth-button' onClick={handle42Login}>42 로그인</button>
         </div>
     );
 };

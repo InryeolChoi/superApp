@@ -12,10 +12,16 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# 42 api credentials
+FT_OAUTH_CLIENT_ID = 'u-s4t2ud-cb1a40d3ecb3108c54425934da3713e83a462f55004ab7fee84bc2afc50dd59b'
+FT_OAUTH_CLIENT_SECRET = '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'
+FT_OAUTH_REDIRECT_URI = 'http://localhost:8000/board/oauth/callback/'
+AUTH_USER_MODEL = 'auth.User'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/

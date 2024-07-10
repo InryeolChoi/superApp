@@ -55,3 +55,17 @@
 .login-form button:active {
     background-color: #004494;
 }
+
+.oauth-button {
+    font-size: 10pt;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    background-color: black;
+    color: white;
+}
+
+.oauth-button:hover {
+    background-color: black;
+}

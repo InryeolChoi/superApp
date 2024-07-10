@@ -24,8 +24,7 @@ const PostDetail = () => {
 
     const handleDelete = () => {
         axios.delete(`/board/posts/${id}/`, {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('access_token')}`
+            headers: {'Authorization': `Bearer ${localStorage.getItem('access_token')}`
             }
         })
             .then(() => {
@@ -49,6 +48,7 @@ const PostDetail = () => {
                 setIsEditOpen(false);
             })
             .catch(error => {
+                // 401 확인 & 재시도
                 alert('수정 과정에서 에러가 발생했습니다.', error);
             });
     };
@@ -62,7 +62,7 @@ const PostDetail = () => {
             <div>
                 <h1 className="post-detail-title">{post.title}</h1>
                 <p className="post-detail-content">{post.content}</p>
-                <p className="post-detail-author">By {post.author}</p>
+                <p className="post-detail-author">By {post.author_username}</p>
                 {isLoggedIn && (
                     <div>
                         <button className="delete-button" onClick={handleDelete}>삭제</button>

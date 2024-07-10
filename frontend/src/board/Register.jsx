@@ -32,10 +32,10 @@ const Register = () => {
 
     return (
         <div className="register-container">
-            <h1 className="register-title">Register</h1>
+            <h1 className="register-title">회원가입</h1>
             <form className="register-form" onSubmit={handleSubmit}>
                 <div>
-                    <label>Username:</label>
+                    <label>아이디:</label>
                     <input
                         type="text"
                         value={username}
@@ -44,7 +44,7 @@ const Register = () => {
                     />
                 </div>
                 <div>
-                    <label>Password:</label>
+                    <label>비밀번호:</label>
                     <input
                         type="password"
                         value={password}
@@ -53,7 +53,7 @@ const Register = () => {
                     />
                 </div>
                 <div>
-                    <label>Confirm Password:</label>
+                    <label>비밀번호 재입력:</label>
                     <input
                         type="password"
                         value={confirmPassword}
@@ -61,8 +61,8 @@ const Register = () => {
                         required
                     />
                 </div>
-                <button type="submit">Register</button>
-                <button type="button" className="back-button" onClick={handleBack}>Back</button>
+                <button type="submit">제출</button>
+                <button type="button" className="back-button" onClick={handleBack}>뒤로가기</button>
             </form>
         </div>
     );
