@@ -94,7 +94,6 @@ class RegisterView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 User = get_user_model()
-
 class OAuthLoginView(APIView):
     permission_classes = [AllowAny]
 
