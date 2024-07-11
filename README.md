@@ -16,4 +16,19 @@
 2. Oauth를 통한 로그인 (42 api 기반)
 
 # 실행방법
-* (추후 추가)
+## backend
+1. venv 설치
+```Bash
+python3 -m venv myenv
+source myenv/bin/activate
+```
+2. pip를 이용한 의존성 설치
+```Bash
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+## frontend
+1. npm 설치 > `npm install`
+* node_modules 디렉토리 생성
+2. localhost:3000 으로 접속
