@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "../axiosConfig";
-import './PostDetail.css'; // CSS 파일 임포트
+import Cookies from "js-cookie";
+import './PostDetail.css';
 
 const PostDetail = () => {
     const { id } = useParams();
@@ -10,7 +11,7 @@ const PostDetail = () => {
     const [isEditOpen, setIsEditOpen] = useState(false);
     const [editTitle, setEditTitle] = useState('');
     const [editContent, setEditContent] = useState('');
-    const isLoggedIn = !!localStorage.getItem('access_token');
+    const isLoggedIn = !!localStorage.getItem('access_token') || !!Cookies.get('access');
 
     useEffect(() => {
         axios.get(`/board/posts/${id}/`)
