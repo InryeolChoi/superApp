@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from '../axiosConfig';
+import axios from '../Axios/simpleAxios';
 import './AddTodolist.css';
 
 const AddTodolist = () => {
@@ -24,23 +24,25 @@ const AddTodolist = () => {
                 setTitle('');
                 setDescription('');
                 setImportant(false);
+                navigate('/list');
             })
             .catch(error => {
-                console.error('할일 추가 과정에서 에러가 났습니다!', error);
-                setMessage('할일 추가 과정에서 에러가 났습니다.');
+                if (error.response && error.response.status === 400) {
+                    setMessage('제목과 설명은 모두 채워져 있어야 합니다.');
+                } else {
+                    setMessage('할일 추가 과정에서 에러가 났습니다.');
+                }
             });
     };
 
     return (
         <div>
-            <button className='back' onClick={
-                () => handleback()
-            }>뒤로가기</button>
+            <button className='back' onClick={() => handleback()}>뒤로가기</button>
             <h1>Add Todo</h1>
             {message && <p>{message}</p>}
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label htmlFor="title">Title:</label>
+                    <label htmlFor="title">제목:</label>
                     <input
                         type="text"
                         value={title}
@@ -49,7 +51,7 @@ const AddTodolist = () => {
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="description">Description:</label>
+                    <label htmlFor="description">설명:</label>
                     <textarea
                         id="description"
                         value={description}
@@ -58,7 +60,7 @@ const AddTodolist = () => {
                     ></textarea>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="important">Important:</label>
+                    <label htmlFor="important">중요여부:</label>
                     <input
                         type="checkbox"
                         id="important"

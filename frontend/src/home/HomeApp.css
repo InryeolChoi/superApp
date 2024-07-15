@@ -4,25 +4,31 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-color: #f0f0f0;
+    background-color: white;
 }
 
-#title {
-    font-size: 2.5rem;
+#home-title {
+    font-size: 32px;
     color: #333;
     margin-bottom: 20px;
 }
 
-#menu-list {
+#home-memu-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     width: 50%;
 }
 
-.menu-button {
-    background-color: #6200ea;
-    color: white;
+#home-menu-box {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#home-menu-button {
+    background-color: #E3E1D9;
+    color: black;
     border: none;
     border-radius: 10px;
     padding: 10px 20px;
@@ -30,9 +36,10 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin: 10px;
-    flex: 1 1 30%;  /* Adjusting to make the buttons smaller */
+    flex: 1 1 45%;
+    max-width: 45%;
 }
 
-.menu-button:hover {
-    background-color: #3700b3;
+#home-menu-button:hover {
+    background-color: #B3A398;
 }

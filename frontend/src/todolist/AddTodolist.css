@@ -32,8 +32,8 @@ input[type="checkbox"] {
 }
 
 .submit {
-    background-color: #4CAF50;
-    color: white;
+    background-color: #E3E1D9;
+    color: black;
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
@@ -42,8 +42,8 @@ input[type="checkbox"] {
 
 .back {
     font-size: 10pt;
-    background-color: #4CAF50;
-    color: white;
+    background-color: #E3E1D9;
+    color: black;
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
@@ -51,6 +51,6 @@ input[type="checkbox"] {
 }
 
 p {
-    color: green;
+    color: E3E1D9;
     font-weight: bold;
 }

@@ -104,7 +104,7 @@ class OAuthLoginView(APIView):
             'redirect_uri': settings.FT_OAUTH_REDIRECT_URI,
             'response_type': 'code',
             'scope': 'public',
-            'state': 'random_state_string',  # 실제 구현에서는 CSRF 보호를 위해 무작위 문자열 사용
+            'state': 'random_state_string',
         }
         query_string = '&'.join([f'{key}={value}' for key, value in params.items()])
         return redirect(f"{ft_oauth_url}?{query_string}")

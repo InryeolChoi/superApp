@@ -6,15 +6,15 @@
     border: none;
     max-width: 800px;
     margin: 0 auto;
-    justify-content: space-between;  /* 공간을 균등하게 분배 */
+    justify-content: space-between;
 }
 
-.parts {
+#parts {
     font-size: 14pt;
     color: #333;
     margin: 10px;
     padding: 15px;
-    background-color: #b3e5fc;
+    background-color: #E3E1D9;
     border-radius: 10px;
     border: none;
     transition: background-color 0.3s ease;
@@ -22,19 +22,19 @@
     text-decoration: none;
 }
 
-.parts:hover {
-    background-color: #81d4fa;
+#parts:hover {
+    background-color: #B3A398;
 }
 
-.parts:active {
-    background-color: #4fc3f7;
+#parts:active {
+    background-color: #B3A398;
 }
 
 #post-list-container {
     width: 80%;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: #e1e1e1d6;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 800px;

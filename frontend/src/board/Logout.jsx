@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "../axiosConfig";
+import axios from '../Axios/tokenAxios';
 import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 
@@ -24,7 +24,7 @@ const Logout = ({ setIsLoggedIn }) => {
             })
     }
     return (
-        <button className='parts' onClick={handleLogout}>로그아웃</button>
+        <button id='parts' onClick={handleLogout}>로그아웃</button>
     )
 }
 

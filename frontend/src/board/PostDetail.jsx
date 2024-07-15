@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
-import axios from "../axiosConfig";
+import axios from '../Axios/tokenAxios';
 import Cookies from "js-cookie";
 import './PostDetail.css';
 
@@ -49,7 +49,6 @@ const PostDetail = () => {
                 setIsEditOpen(false);
             })
             .catch(error => {
-                // 401 확인 & 재시도
                 alert('수정 과정에서 에러가 발생했습니다.', error);
             });
     };

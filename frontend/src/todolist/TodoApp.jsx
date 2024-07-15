@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from "react";
-import axios from '../axiosConfig';
+import axios from '../Axios/simpleAxios';
 import './TodoApp.css';
     
 const TodoApp = () => {
@@ -56,19 +56,13 @@ const TodoApp = () => {
                             ${todo.important ? 'important' : ''}`}>
                         {todo.title}
                         <div>
-                            <button className="todo-button" 
-                                onClick={() => handleComplete(todo.id)}
-                            >
+                            <button className="todo-button" onClick={() => handleComplete(todo.id)}>
                                 완료
                             </button>
-                            <button className="todo-button"
-                                onClick={() => handleEdit(todo.id)}
-                            >
+                            <button className="todo-button"onClick={() => handleEdit(todo.id)}>
                                 수정하기
                             </button>
-                            <button className='todo-button'
-                                onClick={() => handleDelete(todo.id)}
-                            >
+                            <button className='todo-button'onClick={() => handleDelete(todo.id)}>
                                 삭제하기
                             </button>
                         </div>

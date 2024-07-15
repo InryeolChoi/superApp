@@ -36,12 +36,12 @@
     margin-bottom: 10px;
     border: 1px solid #000;
     border-radius: 10px;
-    background-color: #aaf9f9;
+    background-color: #E3E1D9;
     transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
 .todo-item.important {
-    background-color: #ffcccc;
+    background-color: #B3A398;
 }
 
 .todo-item.fade-out {
@@ -51,7 +51,7 @@
 
 .todo-button {
     margin-left: 10px;
-    background-color: #4CAF50;
+    background-color: #594545;
     color: white;
     padding: 10px 15px;
     border: none;

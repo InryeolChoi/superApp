@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
-import axios from "../axiosConfig";
+import axios from '../Axios/tokenAxios';
 import Logout from './Logout';
 import Cookies from 'js-cookie';
 import './PostList.css';
@@ -34,17 +34,17 @@ const PostList = () => {
     return (
         <div>
             <div id='boardhome'>
-                <Link to='/' className='parts'>Home</Link>
-                <Link to="/board" className='parts'>Board</Link>
+                <Link to='/' id='parts'>Home</Link>
+                <Link to="/board" id='parts'>Board</Link>
                 {isLoggedIn ? (
                     <>
-                        <Link to="/board/new" className='parts'>새 포스트</Link>
-                        <Logout className='parts' setIsLoggedIn={setIsLoggedIn}/>                
+                        <Link to="/board/new" id='parts'>새 포스트</Link>
+                        <Logout id='parts' setIsLoggedIn={setIsLoggedIn}/>                
                     </>
                 ) : (
                     <>
-                        <Link to="/board/login" className='parts'>로그인</Link>
-                        <Link to="/board/register" className='parts'>회원가입</Link>
+                        <Link to="/board/login" id='parts'>로그인</Link>
+                        <Link to="/board/register" id='parts'>회원가입</Link>
                     </>
                 )}
             </div>

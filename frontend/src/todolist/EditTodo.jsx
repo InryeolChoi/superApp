@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import axios from '../axiosConfig';
+import axios from '../Axios/simpleAxios';
 import './EditTodo.css'
 
 const EditTodo = () => {
@@ -28,8 +28,11 @@ const EditTodo = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        if (title.length > 100|| description.length > 100){
-            setError("title / description은 100자가 넘으면 안됩니다.")
+        if (title.length > 100){
+            setError("title은 100자가 넘으면 안됩니다.")
+            return ;
+        } else if (description.length > 100) {
+            setError("description은 100자가 넘으면 안됩니다.")
             return ;
         }
     
@@ -42,7 +45,7 @@ const EditTodo = () => {
         axios.put(`/list/todo/${id}/`, updatedTodo)
             .then(response => {
                 setMessage('할일이 성공적으로 수정되었습니다!');
-                navigate('/list');  // 수정 후 메인 페이지로 이동
+                navigate('/list');
             })
             .catch(error => {
                 console.error('할일 수정 과정에서 에러가 났습니다!', error);
