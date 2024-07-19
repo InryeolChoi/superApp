@@ -51,8 +51,7 @@ const ChatList = () => {
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         }
-    }, [isBeginChatOpen]);
-    
+    }, [isBeginChatOpen, isProfileOpen]);
     
     return (
         <div className="chat-container">
