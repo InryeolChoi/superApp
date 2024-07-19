@@ -38,8 +38,8 @@
     padding: 10px;
     border: none;
     border-radius: 5px;
-    background-color: #007BFF;
-    color: white;
+    background-color: #E3E1D9;
+    color: black;
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -47,11 +47,11 @@
 }
 
 .register-form button:hover {
-    background-color: #0056b3;
+    background-color: #B3A398;
 }
 
 .register-form button:active {
-    background-color: #004494;
+    background-color: #B3A398;
 }
 
 .back-button {

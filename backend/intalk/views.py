@@ -6,6 +6,10 @@ class ChatRoomListCreateAPIView(generics.ListCreateAPIView):
     queryset = ChatRoom.objects.all()
     serializer_class = ChatRoomSerializer  # 여기에 serializer_class 추가
 
+class ChatRoomDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = ChatRoom.objects.all()
+    serializer_class = ChatRoomSerializer
+
 class MessageListCreateAPIView(generics.ListCreateAPIView):
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
@@ -15,3 +19,4 @@ class MessageListCreateAPIView(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user, chatroom_id=self.kwargs['chatroom_id'])
+

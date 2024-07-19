@@ -26,8 +26,8 @@ const DoneTodoList = () => {
     };
 
     return (
-        <div className='done-todo-list'>
-            <button className='back' onClick={
+        <div id='done-todo-list'>
+            <button id='back' onClick={
                 () => handleback()
             }>뒤로가기</button>
             <h2>완료된 할일 목록</h2>

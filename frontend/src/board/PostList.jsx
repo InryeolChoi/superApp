@@ -10,14 +10,13 @@ const PostList = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
-        const checkLoginStatus = () => {
+        const checkLoginStatus = async () => {
             const accessToken = Cookies.get('access') || localStorage.getItem('access_token');
             if (accessToken) {
                 setIsLoggedIn(true);
                 axios.defaults.headers['Authorization'] = 'Bearer ' + accessToken;
             }
         };
-
         checkLoginStatus();
     }, []);
 
@@ -27,7 +26,7 @@ const PostList = () => {
                 setPosts(response.data);
             })
             .catch(error => {
-                console.error('There was an error fetching the posts!', error);
+                console.error('포스트 fetching 과정에서 에러 발생', error);
             });
     }, []);
 
@@ -35,14 +34,15 @@ const PostList = () => {
         <div>
             <div id='boardhome'>
                 <Link to='/' id='parts'>Home</Link>
-                <Link to="/board" id='parts'>Board</Link>
                 {isLoggedIn ? (
                     <>
+                        <p id='parts-username'>로그인됨</p>
                         <Link to="/board/new" id='parts'>새 포스트</Link>
                         <Logout id='parts' setIsLoggedIn={setIsLoggedIn}/>                
                     </>
                 ) : (
                     <>
+                        <p id='parts-username'>로그인 필요</p>
                         <Link to="/board/login" id='parts'>로그인</Link>
                         <Link to="/board/register" id='parts'>회원가입</Link>
                     </>
@@ -51,10 +51,9 @@ const PostList = () => {
             <div id="post-list-container">
                 <h1 id="post-list-title">Posts</h1>
                 <ul id="post-list">
-                    {posts.map(post => (
+                    {posts.slice().reverse().map(post => (
                         <li key={post.id} id="post-item">
                             <Link to={`/board/posts/${post.id}`} className="post-title">{post.title}</Link>
-                            <p className="post-content">{post.content}</p>
                             <p className="post-author">By {post.author_username}</p>
                         </li>
                     ))}

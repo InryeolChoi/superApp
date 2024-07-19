@@ -14,7 +14,7 @@
 
 .chat-room-list h1 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 .chat-room-list ul {
@@ -23,17 +23,29 @@
 }
 
 .chat-room-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin: 10px 0;
     padding: 10px;
     background-color: #f0f0f0;
     border-radius: 5px;
-    text-align: center;
 }
 
 .chat-room-list li a {
+    text-align: center;
     text-decoration: none;
     color: #333;
-    font-size: 18px;
+    font-size: 16px;
+    margin-right: auto;
+}
+
+.chat-room-list li button {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    text-align: left;
+    border: none;
 }
 
 .chat-room {
@@ -49,19 +61,68 @@
     margin-bottom: 20px;
 }
 
-.chat-messages {
-    flex-grow: 1;
-    overflow-y: auto;
-    border: 1px solid #ccc;
+.chat-room-option {
+    display: flex;
+    justify-content: space-between;
+}
+
+.option-button {
+    padding : 10px 20px;
+    border: none;
     border-radius: 5px;
-    padding: 10px;
-    background-color: #fff;
-    max-height: 400px;
+    background-color: #E3E1D9;
+    font-size: 18px;
+    color: black;
+}
+
+.option-button:hover {
+    background-color: #B3A398;
+}
+
+.option-button:active {
+    background-color: #B3A398;
+}
+
+.chat-messages {
+    display: flex;
+    flex-direction: column;
+    height: 60vh;
+    overflow-y: auto;
     margin-bottom: 20px;
 }
 
 .chat-message {
+    display: flex;
+    flex-direction: column;
     margin-bottom: 10px;
+    max-width: 60%;
+    padding: 10px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.message-user {
+    font-size: 0.8rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.message-content {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.mine {
+    align-self: flex-end;
+    background-color: #dcf8c6;
+    text-align: right;
+}
+
+.others {
+    align-self: flex-start;
+    background-color: #fff;
+    text-align: left;
+    border: 1px solid #ddd;
 }
 
 .chat-input {
@@ -119,4 +180,61 @@
 
 .create-room button:hover {
     background-color: #0056b3;
+}
+
+.beginChat-popup {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.beginChat-popup-content {
+    background-color: white;
+    padding : 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+}
+
+#popup-part1 {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+#popup-part1 label{
+    flex: 0 0 35px;
+    margin-right: 10px;
+    margin-bottom: 0px;
+    text-align: start;
+}
+
+#popup-part1 input[type='text'] {
+    flex: 1;
+    padding : 8px;
+    margin-left: -5px;
+    border : 1px solid;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#popup-buttonbox {
+    display: flex;
+    align-items: flex-start;
+}
+
+#popup-button {
+    padding: 10px 20px;
+    margin-right : 15px;
+    border: none;
+    border-radius: 5px;
+    color : black;
+    font-size: 15px;
 }

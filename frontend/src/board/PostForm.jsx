@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from '../Axios/tokenAxios';
+import './PostForm.css';
 
 const PostForm = () => {
     const [title, setTitle] = useState('');
@@ -33,27 +34,33 @@ const PostForm = () => {
     }
 
     return (
-        <div>
-            <Link to='/board'>뒤로가기</Link>
-            <h1>새 포스트 만들기</h1>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Title: </label>
-                    <input type="text" value={title}
+        <div className="post-form-container">
+            <Link to='/board' className="back-link">뒤로가기</Link>
+            <h1 className="form-title">새 포스트 만들기</h1>
+            <form onSubmit={handleSubmit} className="post-form">
+                <div className="form-group">
+                    <label>Title:</label>
+                    <input 
+                        type="text" 
+                        value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                        required/>
+                        required
+                        className="form-input"
+                    />
                 </div>
-                <div>
-                    <label>Content :</label>
-                    <textarea value={content}
+                <div className="form-group">
+                    <label>Content:</label>
+                    <textarea 
+                        value={content}
                         onChange={(e) => setContent(e.target.value)}
-                        required>
-                    </textarea>
+                        required
+                        className="form-textarea"
+                    ></textarea>
                 </div>
-                <button type='submit'>등록</button>
+                <button type="submit" className="form-submit">등록</button>
             </form>
         </div>
-    )
+    );
 }
 
 export default PostForm;

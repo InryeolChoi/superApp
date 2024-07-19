@@ -7,6 +7,7 @@ const ChatRoom = () => {
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
     const webSocket = useRef(null);
+    const username = "current_user"; // 현재 사용자의 이름 (임시로 설정)
 
     useEffect(() => {
         const encodedRoomName = encodeURIComponent(roomName);
@@ -18,12 +19,15 @@ const ChatRoom = () => {
 
         webSocket.current.onclose = (e) => {
             console.log('WebSocket disconnected:', e.reason);
-            alert(`웹소켓이 끊겼습니다.`)
+        };
+
+        webSocket.current.onerror = (e) => {
+            console.error('WebSocket error:', e);
         };
 
         webSocket.current.onmessage = (e) => {
             const data = JSON.parse(e.data);
-            setMessages(prev => [...prev, data.message]);
+            setMessages(prev => [...prev, data]);
         };
 
         return () => {
@@ -34,6 +38,7 @@ const ChatRoom = () => {
     const handleSendMessage = () => {
         const messageData = {
             message,
+            user: username
         };
         webSocket.current.send(JSON.stringify(messageData));
         setMessage('');
@@ -42,10 +47,13 @@ const ChatRoom = () => {
     return (
         <div className="chat-container">
             <div className="chat-room">
-                <h1>채팅방: {roomName}</h1>
+                <h1>{roomName}</h1>
                 <div className="chat-messages">
                     {messages.map((msg, index) => (
-                        <div key={index} className="chat-message">{msg}</div>
+                        <div key={index} className={`chat-message ${msg.user === username ? 'mine' : 'others'}`}>
+                            <div className="message-user">{msg.user}</div>
+                            <div className="message-content">{msg.message}</div>
+                        </div>
                     ))}
                 </div>
                 <div className="chat-input">

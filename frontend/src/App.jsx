@@ -2,8 +2,8 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import HomeApp from './home/HomeApp';
 import Board from './board/Board';
-import Chathome from './intalk/Chathome';
-import TodoHome from './todolist/Todohome';
+import Chathome from './intalk/ChatHome';
+import TodoHome from './todolist/TodoHome';
 import './App.css';
 
 const App = () => {

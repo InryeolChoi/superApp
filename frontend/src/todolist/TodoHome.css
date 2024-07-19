@@ -1,0 +1,52 @@
+/* 전체 컨테이너 스타일 */
+.todo-home-container {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    text-align: center;
+}
+
+/* 홈 링크 스타일 */
+.home-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    text-decoration: none;
+    color: #E3E1D9;
+    transition: color 0.3s ease;
+}
+
+.home-link:hover {
+    color: #B3A398;
+}
+
+/* 네비게이션 링크 스타일 */
+.nav-links {
+    display: flex;
+    justify-content: left;
+    margin-bottom: 20px;
+}
+
+/* 버튼 스타일 */
+.rounded-link {
+    background-color: #E3E1D9;
+    color: black;
+    padding: 10px 15px;
+    border-radius: 8px;
+    border: none;
+    text-decoration: none;
+    margin: 0 10px;
+    transition: background-color 0.3s ease;
+}
+
+.rounded-link:hover {
+    background-color: #B3A398;
+}
+
+.route-content {
+    padding: 20px;
+    background-color: f9f9f9;
+}

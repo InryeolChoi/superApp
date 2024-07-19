@@ -36,10 +36,10 @@ const AddTodolist = () => {
     };
 
     return (
-        <div>
-            <button className='back' onClick={() => handleback()}>뒤로가기</button>
+        <div id='back-button-container'>
+            <button id='back' onClick={() => handleback()}>뒤로가기</button>
             <h1>Add Todo</h1>
-            {message && <p>{message}</p>}
+            {message && <p className="message">{message}</p>}
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="title">제목:</label>

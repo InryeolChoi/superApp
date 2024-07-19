@@ -1,15 +1,15 @@
+from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import status
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, AllowAny
-from rest_framework_simplejwt.tokens import RefreshToken
-from django.contrib.auth import authenticate
-from .models import Post
-from .serializers import PostSerializer, PostCreateSerializer, UserSerializer
+from rest_framework import status
 from django.conf import settings
 from django.shortcuts import redirect
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model, authenticate
+from .models import Post
+from .serializers import PostSerializer, PostCreateSerializer, UserSerializer
 import requests
+
 
 class PostListCreateAPIView(APIView):
     permission_classes = [IsAuthenticatedOrReadOnly]

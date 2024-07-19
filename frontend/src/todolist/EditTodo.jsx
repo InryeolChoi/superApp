@@ -94,7 +94,7 @@ const EditTodo = () => {
                         onChange={(e) => setImportant(e.target.checked)}
                     />
                 </div>
-                <button type="submit">수정</button>
+                <button type="submit" id='submit'>수정</button>
             </form>
         </div>
     )

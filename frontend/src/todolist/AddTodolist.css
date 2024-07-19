@@ -1,10 +1,16 @@
+#back-button-container {
+    text-align: left;
+}
+
 h1 {
     font-size: 24px;
     margin-bottom: 20px;
+    text-align: left;
 }
 
 .form-group {
     margin-bottom: 15px;
+    text-align: left;
 }
 
 label {
@@ -38,9 +44,10 @@ input[type="checkbox"] {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    text-align: left;
 }
 
-.back {
+#back {
     font-size: 10pt;
     background-color: #E3E1D9;
     color: black;
@@ -48,9 +55,11 @@ input[type="checkbox"] {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    text-align: left;
 }
 
-p {
-    color: E3E1D9;
+.message {
+    color: black;
     font-weight: bold;
+    text-align: left;
 }

@@ -18,6 +18,7 @@
     font-size: 1rem;
     color: #555;
     margin: 10px 0;
+    white-space: pre-wrap;
 }
 
 .post-detail-author {
@@ -30,35 +31,35 @@
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    color: white;
+    color: black;
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .delete-button {
-    background-color: #dc3545;
+    background-color: #B3A398;
     margin-right: 10px;
 }
 
 .delete-button:hover {
-    background-color: #c82333;
+    background-color: #b69681;
 }
 
 .delete-button:active {
-    background-color: #bd2130;
+    background-color: #b69681;
 }
 
 .edit-button {
-    background-color: #007BFF;
+    background-color: #eab18b;
 }
 
 .edit-button:hover {
-    background-color: #0056b3;
+    background-color: #e99c68;
 }
 
 .edit-button:active {
-    background-color: #004494;
+    background-color: #e99c68;
 }
 
 .edit-popup {
@@ -105,33 +106,33 @@
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    color: white;
+    color: black;
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .edit-popup-content button:first-of-type {
-    background-color: #28a745;
+    background-color: #B3A398;
     margin-right: 10px;
 }
 
 .edit-popup-content button:first-of-type:hover {
-    background-color: #218838;
+    background-color: #e99c68;
 }
 
 .edit-popup-content button:first-of-type:active {
-    background-color: #1e7e34;
+    background-color: #e99c68;
 }
 
 .edit-popup-content button:last-of-type {
-    background-color: #6c757d;
+    background-color: #eab18b;
 }
 
 .edit-popup-content button:last-of-type:hover {
-    background-color: #5a6268;
+    background-color: #e99c68;
 }
 
 .edit-popup-content button:last-of-type:active {
-    background-color: #545b62;
+    background-color: #e99c68;
 }

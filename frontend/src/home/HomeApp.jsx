@@ -17,7 +17,7 @@ const HomeApp = () => {
                     <button id="home-menu-button" onClick={gotoboard}>Board로 가기</button>
                 </span>
                 <span id="home-menu-box">
-                    <button id="home-menu-button" onClick={gotoIntalk}>인렬톡으로 가기</button>
+                    <button id="home-menu-button" onClick={gotoIntalk}>Intalk으로 가기</button>
                     <button id="home-menu-button">핑퐁으로 가기</button>
                 </span>
             </div>
