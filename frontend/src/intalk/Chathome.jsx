@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import ChatList from './ChatList';
 import ChatRoom from './ChatRoom';
 
-const Chathome = () => {
+const ChatHome = () => {
     return (
         <Routes>
             <Route path="/" element={<ChatList />} />
@@ -12,4 +12,4 @@ const Chathome = () => {
     );
 };
 
-export default Chathome;
+export default ChatHome;
