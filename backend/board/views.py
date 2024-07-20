@@ -8,8 +8,12 @@ from django.shortcuts import redirect
 from django.contrib.auth import get_user_model, authenticate
 from .models import Post
 from .serializers import PostSerializer, PostCreateSerializer, UserSerializer
-import requests
-
+from django.core.mail import send_mail, get_connection
+from django.utils import timezone
+from .models import Post, UserProfile
+from .serializers import PostSerializer, PostCreateSerializer, UserSerializer, OTPSerializer
+from random import randint
+import requests, smtplib
 
 class PostListCreateAPIView(APIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
@@ -150,3 +154,62 @@ class OAuthCallbackView(APIView):
         response.set_cookie('refresh', str(refresh))
         response.set_cookie('access', str(refresh.access_token))
         return response
+
+class SendOTPView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        email = request.data.get('email')
+        print(f"Received email: {email}")  # 디버그 출력
+        try:
+            user = User.objects.get(email=email)
+            print(f"Found user: {user}")  # 디버그 출력
+        except User.DoesNotExist:
+            print("User not found")  # 디버그 출력
+            return Response({'detail': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+
+        otp = randint(100000, 999999)
+        user_profile, created = UserProfile.objects.get_or_create(user=user)
+        user_profile.otp = str(otp)
+        user_profile.otp_created_at = timezone.now()
+        user_profile.save()
+
+        try:
+            send_mail(
+                'Your OTP Code',
+                f'Your OTP code is {otp}',
+                'from@example.com',
+                [email],
+                fail_silently=False,
+            )
+            print("OTP email sent")  # 디버그 출력
+        except Exception as e:
+            print(f"Failed to send email: {e}")  # 디버그 출력
+            return Response({'detail': 'Failed to send email'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+        return Response({'detail': 'OTP sent'}, status=status.HTTP_200_OK)
+
+class VerifyOTPView(APIView):
+    permission_classes = [AllowAny]
+
+    def post(self, request):
+        serializer = OTPSerializer(data=request.data)
+        if serializer.is_valid():
+            otp = serializer.validated_data['otp']
+            email = serializer.validated_data['email']
+            try:
+                user = User.objects.get(email=email)
+            except User.DoesNotExist:
+                return Response({'detail': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
+            
+            user_profile = UserProfile.objects.get(user=user)
+            if user_profile.otp == otp and (timezone.now() - user_profile.otp_created_at).seconds < 300:
+                # OTP is valid and not expired
+                refresh = RefreshToken.for_user(user)
+                return Response({
+                    'refresh': str(refresh),
+                    'access': str(refresh.access_token)
+                }, status=status.HTTP_200_OK)
+            else:
+                return Response({'detail': 'Invalid or expired OTP'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

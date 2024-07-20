@@ -1,11 +1,10 @@
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import simpleAxios from './simpleAxios';
 
 const tokenAxios = axios.create({
     baseURL: simpleAxios.defaults.baseURL,
-    timeout: simpleAxios.defaults.timeout,
+    timeout: 5000, // 타임아웃을 5000ms로 설정 (5초)
     headers: simpleAxios.defaults.headers,
 });
 
@@ -50,8 +49,10 @@ tokenAxios.interceptors.response.use(
                 return tokenAxios(originalRequest);
             } catch (err) {
                 console.error('재시도 중 에러 발생:', err);
-                const navigate = useNavigate();
-                navigate('/login');
+                // 네비게이트 함수 호출을 위한 콜백을 사용하도록 설정
+                if (originalRequest.onAuthFail) {
+                    originalRequest.onAuthFail();
+                }
             }
         }
         return Promise.reject(error);

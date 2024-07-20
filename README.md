@@ -14,7 +14,7 @@
 * 로그인 기능
 1. jwt를 통한 로그인
 2. Oauth를 통한 로그인 (42 api 기반)
-3. 2fa를 이용한 로그인
+3. 2fa를 이용한 로그인 (이메일 이용)
 
 ## intalk
 * 웹소켓을 이용한 채팅방 기능 추가
@@ -38,10 +38,17 @@ pip install -r requirements.txt
 * node_modules 디렉토리 생성
 2. localhost:3000 으로 접속
 
+# 지속성
 ## gitignore
 * 최상단 디렉토리에 `.gitignore` 파일을 만들자.
 * 최소한 이 정도는 추가하는 것이 좋다.
 ```Bash
 frontend/node_modules
 backend/myenv
+```
+
+## pip freeze
+pip로 무언가를 설치할 때마다 pip 리스트를 업데이트하는 것이 좋다.
+```Bash
+pip freeze > requirements.txt
 ```

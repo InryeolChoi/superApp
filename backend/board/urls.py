@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import PostListCreateAPIView, PostDetailAPIView, LoginView, \
-                    LogoutView, RegisterView, OAuthLoginView, OAuthCallbackView
+                    LogoutView, RegisterView, OAuthLoginView, OAuthCallbackView, \
+                    SendOTPView, VerifyOTPView
 from rest_framework_simplejwt.views import (
     TokenObtainPairView, TokenRefreshView, TokenVerifyView,
 )
@@ -19,4 +20,7 @@ urlpatterns = [
     # oauth 로그인
     path('oauth/login/', OAuthLoginView.as_view(), name='oauth_login'),
     path('oauth/callback/', OAuthCallbackView.as_view(), name='oauth_callback'),
+    # OTP 관련
+    path('otp/send/', SendOTPView.as_view(), name='send_otp'),
+    path('otp/verify/', VerifyOTPView.as_view(), name='verify_otp'),
 ]

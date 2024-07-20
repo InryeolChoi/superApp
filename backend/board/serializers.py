@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Post, User
+from .models import Post, User, UserProfile
 
 class PostSerializer(serializers.ModelSerializer):
     author_username = serializers.CharField(source='author.username', read_only=True)
@@ -29,4 +29,9 @@ class UserSerializer(serializers.ModelSerializer):
             password=validated_data['password'],
             email=validated_data.get('email', '')
         )
+        UserProfile.objects.create(user=user)
         return user
+
+class OTPSerializer(serializers.Serializer):
+    otp = serializers.CharField(max_length=6)
+    email = serializers.EmailField()

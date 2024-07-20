@@ -22,6 +22,17 @@ FT_OAUTH_CLIENT_SECRET = 's-s4t2ud-9b8cc26a9553989361b2247e49f66f7e319771ba93d0d
 FT_OAUTH_REDIRECT_URI = 'http://localhost:8000/board/oauth/callback/'
 AUTH_USER_MODEL = 'auth.User'
 
+# email settings 
+EMAIL_BACKEND = 'mytodo.custom_email_backend.CustomEmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'dlsfuf0316@gmail.com'
+EMAIL_HOST_PASSWORD = 'zgmf ytup vczl lxik'
+
+# SSL 인증서 검증 비활성화 (개발 환경에서만)
+EMAIL_USE_LOCAL_CERTIFICATE = False
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -31,8 +42,22 @@ SECRET_KEY = 'django-insecure-j0!op9dzpcgiub*zp9ng+m=#x9-l_ra^-psy86u#vxw7gj-u&=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
+# 로깅 설정 추가
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'DEBUG',
+    },
+}
 
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 # Application definition
 

@@ -5,6 +5,8 @@ import PostDetail from './PostDetail';
 import PostForm from './PostForm';
 import Login from './Login';
 import Register from './Register';
+import EmailVerification from './EmailVerification';
+import OTPVerification from './OTPVerification';
 
 const Board = () => {
     return (
@@ -15,6 +17,8 @@ const Board = () => {
                 <Route path="/new" element={<PostForm />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/email-verification" element={<EmailVerification />} />
+                <Route path="/otp-verification" element={<OTPVerification />} />
             </Routes>
         </div>
     );
