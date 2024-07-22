@@ -12,13 +12,18 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+import environ
+
+# Initialize environ
+env = environ.Env()
+environ.Env.read_env(env_file=Path(__file__).resolve().parent.parent / '.env')  # .env 파일에서 환경 변수를 읽어옵니다.
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # 42 api credentials
-FT_OAUTH_CLIENT_ID = 'u-s4t2ud-cb1a40d3ecb3108c54425934da3713e83a462f55004ab7fee84bc2afc50dd59b'
-FT_OAUTH_CLIENT_SECRET = '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'
+FT_OAUTH_CLIENT_ID = env('FT_OAUTH_CLIENT_ID')
+FT_OAUTH_CLIENT_SECRET = env('FT_OAUTH_CLIENT_SECRET')
 FT_OAUTH_REDIRECT_URI = 'http://localhost:8000/board/oauth/callback/'
 AUTH_USER_MODEL = 'auth.User'
 
@@ -27,8 +32,8 @@ EMAIL_BACKEND = 'mytodo.custom_email_backend.CustomEmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'dlsfuf0316@gmail.com'
-EMAIL_HOST_PASSWORD = 'zgmf ytup vczl lxik'
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 
 # SSL 인증서 검증 비활성화 (개발 환경에서만)
 EMAIL_USE_LOCAL_CERTIFICATE = False
@@ -37,10 +42,10 @@ EMAIL_USE_LOCAL_CERTIFICATE = False
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-j0!op9dzpcgiub*zp9ng+m=#x9-l_ra^-psy86u#vxw7gj-u&='
+SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # 로깅 설정 추가
 LOGGING = {
@@ -53,7 +58,7 @@ LOGGING = {
     },
     'root': {
         'handlers': ['console'],
-        'level': 'DEBUG',
+        'level': 'INFO',
     },
 }
 
