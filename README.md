@@ -18,7 +18,6 @@
 
 ## intalk
 * 웹소켓을 이용한 채팅방 기능 추가
-* (추후 업데이트 예정)
 
 # 실행방법
 ## backend
@@ -39,6 +38,8 @@ pip install -r requirements.txt
 2. localhost:3000 으로 접속
 
 # 지속성
+> git clone을 하고 꼭 만들어줘야 할 것들이다.
+
 ## gitignore
 * 최상단 디렉토리에 `.gitignore` 파일을 만들자.
 * 최소한 이 정도는 추가하는 것이 좋다.
@@ -52,3 +53,8 @@ pip로 무언가를 설치할 때마다 pip 리스트를 업데이트하는 것�
 ```Bash
 pip freeze > requirements.txt
 ```
+
+## env 파일
+2fa 기능을 이용해서 무언가를 할 떄 반드시 추가해야 함.
+* ``, ``는 2fa 기능을 이용하려면 반드시 추가해야 함.
+* Gmail 이용시 SMTP 기능을 켜주고, 앱 비밀번호를 설정하면 됨.
