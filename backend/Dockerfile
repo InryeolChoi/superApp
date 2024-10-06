@@ -20,9 +20,6 @@ COPY . /app/
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-# 정적 파일 수집
-RUN python manage.py collectstatic --noinput
-
 # 포트 노출
 EXPOSE 8000
 

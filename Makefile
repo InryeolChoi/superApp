@@ -1,6 +1,4 @@
-all: check up
-
-check:
+all: up
 
 up:
 	docker compose up --build -d
@@ -14,16 +12,19 @@ logback:
 logfront:
 	docker logs frontend -f
 
+logdb:
+	docker logs db -f
+
 inback:
 	docker exec -it backend bash
 
 infront:
 	docker exec -it frontend bash
 
-re: down up
-
 clean: down
 	docker compose down -v --rmi all --remove-orphans
+
+re: down up
 
 fclean: clean
 	docker system prune -a -f --volumes
