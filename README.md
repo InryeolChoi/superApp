@@ -19,21 +19,12 @@
 ## intalk
 * 웹소켓을 이용한 채팅방 기능 추가
 
-# 도커 없이 실행 및 설정 관련
-> 기본적으로는 도커 위에서 돌아가지만, 필요 시 참고
-* [backend 실행 및 설정](./backend/README.md)
-* [frontend 실행 및 설정](./frontend/README.md)
+# 실행 및 설정 관련
+* [도커 없이 backend 실행 및 설정](./backend/README.md)
+* [도커 없이 frontend 실행 및 설정](./frontend/README.md)
+* [보안 관련 설정 (env, gitignore)](./security.md.md)
 
-# 지속성 관련 설정
-## gitignore
-* 최상단 디렉토리에 `.gitignore` 파일을 만들자.
-* 최소한 이 정도는 추가하는 것이 좋다.
-```Bash
-frontend/node_modules
-backend/myenv
-```
-
-## pip 리스트 업데이트
+# pip 리스트 업데이트
 * pip로 무언가를 설치할 때마다 pip 리스트를 업데이트하는 것이 좋다.
 * pip 리스트인 requirements.txt는 다음과 같이 업그레이드 한다.
 

@@ -6,6 +6,11 @@ WORKDIR /app
 
 # 필요한 패키지 설치
 COPY requirements.txt /app/
+
+# 필요한 빌드 도구 설치 (gcc, musl-dev)
+RUN apt-get update && apt-get install -y gcc libpq-dev python3-dev
+
+# pip를 이용한 의존성 환경 설치
 RUN pip install --no-cache-dir -r requirements.txt
 
 # 소스 코드를 컨테이너에 복사

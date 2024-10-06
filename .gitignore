@@ -1,3 +1,11 @@
+# env
+*/.env
+.env
+
+# directory
 frontend/node_modules
 backend/myenv
-backend/.env
+postgres_db
+
+# macOS
+.DS_Store

@@ -8,16 +8,32 @@ services:
       - ./backend:/app
     ports:
       - "8000:8000"
-    # depends_on:
-    #   - db
+    depends_on:
+      - db
     environment:
-      - SECRET_KEY=your_secret_key
-      - DEBUG=1
-      - DB_HOST=db
-      - DB_NAME=your_db_name
-      - DB_USER=your_db_user
-      - DB_PASSWORD=your_db_password
-      - DB_PORT=5432
+      - SECRET_KEY=${SECRET_KEY}
+      - EMAIL_HOST_USER=${EMAIL_HOST_USER}
+      - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
+      - FT_OAUTH_CLIENT_ID=${FT_OAUTH_CLIENT_ID}
+      - FT_OAUTH_CLIENT_SECRET=${FT_OAUTH_CLIENT_SECRET}
+      - DEBUG=${DEBUG}
+      - DB_HOST=${DB_HOST}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_PORT=${DB_PORT}
+
+  db:
+    image: postgres
+    container_name: db
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - ./postgres_db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
 
   frontend:
     build:
@@ -32,3 +48,6 @@ services:
     tty: true
     depends_on:
       - backend
+
+volumes:
+  postgres_db:
