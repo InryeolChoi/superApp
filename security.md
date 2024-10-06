@@ -1,6 +1,7 @@
 # 보안 관련 사항
 ## env 세팅하기
 * 다음과 같이 `.env` 파일을 세팅해준다.
+* `.env` 파일은 `SuperApp` 폴더 바로 아래에 위치해야 한다.
 * `.env`는 반드시 `.gitignore`에 넣어줘야 한다.
 * 이 프로젝트에서 필요한 목록은 다음과 같다.
 
@@ -14,11 +15,11 @@ EMAIL_HOST_PASSWORD='aaaaaa'
 
 # DB
 DEBUG='1 또는 0'
-DB_HOST=aaaaaa
-DB_NAME=your_db_name
-DB_USER=your_db_user
-DB_PASSWORD=your_db_password
-DB_PORT=0000
+DB_HOST='aaaaaa'
+DB_NAME='your_db_name'
+DB_USER='your_db_user'
+DB_PASSWORD='your_db_password'
+DB_PORT='0000'
 ```
 
 ## gitignore

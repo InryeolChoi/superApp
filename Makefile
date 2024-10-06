@@ -1,4 +1,6 @@
-all: up
+all: check up
+
+check:
 
 up:
 	docker compose up --build -d
@@ -22,3 +24,6 @@ re: down up
 
 clean: down
 	docker compose down -v --rmi all --remove-orphans
+
+fclean: clean
+	docker system prune -a -f --volumes
