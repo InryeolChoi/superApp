@@ -5,11 +5,11 @@ all: start
 
 start: check-env
 	@echo "Starting Django server..."
-	cd backend && python3 manage.py runserver
+	python manage.py runserver
 
 check-env:
-	@if [ ! -f backend/.env ]; then \
-		echo TEXT_NO_ENV; \
+	@if [ ! -f ./.env ]; then \
+		echo ${TEXT_NO_ENV}; \
 		exit 1; \
 	else \
 		echo ".env 파일을 확인했습니다."; \
@@ -17,7 +17,6 @@ check-env:
 
 stop:
 	@echo "Stopping Django server..."
-	@pkill -f "python3 manage.py runserver" || echo "Django 서버가 실행 중이지 않습니다."
-
+	@pkill -f "python manage.py runserver" || echo "Django 서버가 실행 중이지 않습니다."
 
 .PHONY: start stop check-env
