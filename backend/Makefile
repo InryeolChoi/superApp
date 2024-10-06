@@ -1,22 +1,20 @@
-TEXT_NO_ENV_1 = "현재 backend 디렉토리에 .env 파일이 존재하지 않습니다. 시작 전 .env 파일을 생성해주세요."
-TEXT_NO_ENV_2 = ".env file does not exist. Please set it up before starting this server."
+# 설정
+CONTAINER=backend
+DOCKER_IMAGE=backend_image
 
 all: start
 
-start: check-env
-	@echo "Starting Django server..."
-	python manage.py runserver
+start: build
+	docker run --name $(CONTAINER) -p 8000:8000 $(DOCKER_IMAGE)
 
-check-env:
-	@if [ ! -f ./.env ]; then \
-		echo ${TEXT_NO_ENV}; \
-		exit 1; \
-	else \
-		echo ".env 파일을 확인했습니다."; \
-	fi
+build:
+	docker build -t $(DOCKER_IMAGE) .
 
 stop:
-	@echo "Stopping Django server..."
-	@pkill -f "python manage.py runserver" || echo "Django 서버가 실행 중이지 않습니다."
+	docker stop $(CONTAINER)
+	docker rm $(CONTAINER)
 
-.PHONY: start stop check-env
+clean: stop
+	docker rmi $(DOCKER_IMAGE)
+
+.PHONY: all start build stop clean
