@@ -15,8 +15,8 @@ COPY . /app/
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
-# .env 파일 로드 (옵션: 실제 서버 설정에 따라 다름)
-RUN export $(grep -v '^#' .env | xargs)
+# 정적 파일 수집
+RUN python manage.py collectstatic --noinput
 
 # 포트 노출
 EXPOSE 8000

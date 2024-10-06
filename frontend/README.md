@@ -1,5 +1,5 @@
 # frontend
-## 설정 및 실행 방법
+## 도커 없이 실행하려면...
 1. npm 설치 > `npm install`
 * `node_modules` 디렉토리 생성
 * `package.json`에 해당 목록이 전부 있음.
