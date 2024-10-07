@@ -28,6 +28,12 @@ jobs:
           --health-retries 5
     
     steps:
+      - name: Debug secrets
+        run: |
+          echo "DB_USER is ${{ secrets.DB_USER }}"
+          echo "DB_PASSWORD is ${{ secrets.DB_PASSWORD }}"
+
+
       - name: Checkout code
         uses: actions/checkout@v2
 
