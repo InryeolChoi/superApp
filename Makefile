@@ -6,25 +6,28 @@ up:
 down:
 	docker compose down
 
-logback:
+backlog:
 	docker logs backend -f
 
-logfront:
+frontlog:
 	docker logs frontend -f
 
-logdb:
+dblog:
 	docker logs db -f
 
-inback:
+backshell:
 	docker exec -it backend bash
 
-infront:
+frontshell:
 	docker exec -it frontend bash
+
+dbshell:
+	docker exec -it db bash
 
 clean: down
 	docker compose down -v --rmi all --remove-orphans
 
-re: down up
-
 fclean: clean
 	docker system prune -a -f --volumes
+
+re: down up

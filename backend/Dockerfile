@@ -23,5 +23,5 @@ ENV PYTHONUNBUFFERED=1
 # 포트 노출
 EXPOSE 8000
 
-# Django 서버 실행 명령
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# 마이그레이션 및 서버 실행
+ENTRYPOINT ["/app/entrypoint.sh"]

@@ -7,6 +7,10 @@
 
 ```bash
 # backend
+SUPERUSER_NAME='aaaaa'
+SUPERUSER_EMAIL='aaaaa@gmail.com'
+SUPERUSER_PASSWORD='aaaaa'
+
 SECRET_KEY='aaaaaa'
 FT_OAUTH_CLIENT_ID='aaaaaa'
 FT_OAUTH_CLIENT_SECRET='aaaaaa'
