@@ -16,13 +16,13 @@ jobs:
       postgres:
         image: postgres:17
         env:
-            POSTGRES_DB: 'inchoidb'
-            POSTGRES_USER: 'inchoi'
-            POSTGRES_PASSWORD: 'choi6240'
+            POSTGRES_DB: ${{ secrets.DB_NAME }}
+            POSTGRES_USER: ${{ secrets.DB_USER }}
+            POSTGRES_PASSWORD: ${{ secrets.DB_PASSWORD }}
         ports:
           - 5432:5432
         options: >-
-          --health-cmd "pg_isready -U inchoi" 
+          --health-cmd "pg_isready -U ${{ secrets.DB_USER }}" 
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
@@ -50,6 +50,18 @@ jobs:
       - name: Run Django tests
         run: |
           docker-compose run backend python manage.py test
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          FT_OAUTH_CLIENT_ID: ${{ secrets.FT_OAUTH_CLIENT_ID }}
+          FT_OAUTH_CLIENT_SECRET: ${{ secrets.FT_OAUTH_CLIENT_SECRET }}
+          EMAIL_HOST_USER: ${{ secrets.EMAIL_HOST_USER }}
+          EMAIL_HOST_PASSWORD: ${{ secrets.EMAIL_HOST_PASSWORD }}
+          DEBUG: ${{ secrets.DEBUG }}
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_PORT: ${{ secrets.DB_PORT }}
 
       - name: Build and run frontend
         run: |
