@@ -18,10 +18,7 @@
 
 ## intalk
 * 웹소켓을 이용한 채팅방 기능 추가
-
-## games (추후 추가)
-* 게임 넣어보기 (예정)
-
+
 # 실행 및 설정 관련
 * [도커 없이 backend 실행 및 설정](./backend/README.md)
 * [도커 없이 frontend 실행 및 설정](./frontend/README.md)
