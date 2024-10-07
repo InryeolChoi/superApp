@@ -22,7 +22,7 @@
 # 실행 및 설정 관련
 * [도커 없이 backend 실행 및 설정](./backend/README.md)
 * [도커 없이 frontend 실행 및 설정](./frontend/README.md)
-* [보안 관련 설정 (env, gitignore)](./security.md.md)
+* [보안 관련 설정 (env, gitignore)](./security.md)
 
 # pip 리스트 업데이트
 * pip로 무언가를 설치할 때마다 pip 리스트를 업데이트하는 것이 좋다.
